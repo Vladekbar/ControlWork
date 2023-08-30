@@ -53,3 +53,46 @@
     string inputOutput = string.Join("\", \"", inputArray);
     string resultOutput = string.Join("\", \"", resultArray);
     Console.WriteLine($"[\"{inputOutput}\"] -> [\"{resultOutput}\"]");
+
+### Текстовое описание решения с комментариями.
+Считаю необходимым снабдить готовое решение комментариями.
+
+    ﻿Console.WriteLine("Введите элементы массива через пробел:");
+    string input = Console.ReadLine();
+    string[] inputArray = input.Split(new[] { ' ' },StringSplitOptions.RemoveEmptyEntries);
+    //Split - разделение строки на подстроки
+    //StringSplitOptions.RemoveEmptyEntries, где дословно RemoveEmptyEntries - удаление пустот.
+    //Если, например, пробел случайно был нажат один или несколько раз, или пробел был после введения последнего элемента.
+
+    //1.1 ПОДСЧЕТ КОЛ_ВА ЭЛЕМЕНТОВ СОГЛАСНО УСЛОВИЯМ.
+
+    int count = 0; // Переменная для подсчета кол-ва выполненных условий (элементы массива с колв-м символов <=3)
+
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        if (inputArray[i].Length <= 3)
+        {
+            count++; // Для размерности будущего нового массива
+        }
+    }
+
+    string[] resultArray = new string[count]; // в зависимости от count в новом массиве будет count элементов.
+    // Например, ввели 5 элементов, из них 2  - подходят под условия, значит, у нас будет новый массив с двумя элементами
+
+
+    //2. ЗАПОЛЕНЕНИЕ НОВОГО МАССИВА ЭЛЕМЕНТАМИ С СИМВОЛАМИ, ПРОШЕДШИХ ПРОВЕРКУ.
+
+    int index = 0; // "итое" элементов нового массива. 
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        if (inputArray[i].Length <= 3)
+        {
+            resultArray[index] = inputArray[i];
+            index++;
+        }
+    }
+    
+    string inputOutput = string.Join("\", \"", inputArray);
+    string resultOutput = string.Join("\", \"", resultArray); // оба случая - настройка для вывода в красивом, читаемом формате.
+
+    Console.WriteLine($"[\"{inputOutput}\"] -> [\"{resultOutput}\"]");
